@@ -3,8 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
+  - php
   - javascript
 
 toc_footers:
@@ -17,13 +16,26 @@ includes:
 search: true
 ---
 
-# Introduction
+# Introducción
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Bienvenido al API de MonetaCore, plataforma desarrollada para la gestión de las obligaciones fiscales de los contribuyentes ante el SAT.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+MonetaCore está desarrollada bajo la arquitectura REST y de acuerdo al servicio web ha consumir se utilizan los siguientes verbos del protocolo HTTP (GET, POST, PUT y DELETE); 
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Verbo | Descripción
+--------- | -----------
+GET | Consultar información de un recurso en particular ó de todos los existentes.
+POST | Creación de un recurso nuevo.
+PUT | Actualización del recurso indicado.
+DELETE | Eliminación del recurso indicado.
+
+MonetaCore implementa la tecnología de CERBERUS capa de abstración responsable de la autorización de ejecución de servicios disponibles para el usuario; dicha tecnología utiliza los siguientes conceptos: 
+
+Token | HTTP Header | Descripción
+--------- | --------- | -----------
+Connection | x-token | Token asignado a un cliente con credenciales válidas que desea consumir servicios expuestos disponibles para todos, ejemplo Catálagos.
+Session | x-token | Token asignado a un usuario con credenciales válidas, que le permitirán ejecutar servicios que por la delicadeza de la información es necesario conocer al resposable de la ejecución, ejemplo: actualización de la información de perfil.
+Transaction | x-token | Token creado por un usuario con Session válida para la ejecución de servicios que requieren iniciar una transacción para el flujo de un proceso, por ejemplo pagar un servicio.
 
 # Authentication
 
