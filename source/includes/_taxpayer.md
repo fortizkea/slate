@@ -54,16 +54,13 @@ x-updated-at: Mon, 20 Mar 2017 19:53:21 GMT
 
 This web service create a new `taxpayer`
 
+### Service Type `ConnectionService`
+Read the [`ConnectionService`](#connectionservice) requierements.
+
 ### HTTP Request
 
 `POST /v1/taxpayers`
 
-### Header Parameters
-
-Parameters | Required | Type  | Description 
---------- | ------- | ------- | -------
-x-token | true | String | client's token
-Content-Type | true | String | indicate the media type of the resource
 
 ### Body Parameters 
 `TaxpayerRQ Object`
