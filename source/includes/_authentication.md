@@ -2,50 +2,12 @@
 
 ## LoginClient
 
-```http
-  POST /{ApiUri}/v1/auth/login-client?password=901482&username=fxtWebSite HTTP/1.1
-  Host: {domainApi}
-  Content-Type: application/json
-  Cache-Control: no-cache
-```
-
 ```shell
-  curl -X POST -H "Content-Type: application/json" 
+  curl -X POST 
+  -H "Content-Type: application/json" 
   "https://{ApiURL}/v1/auth/login-client?password=901482&username=fxtWebSite"
 ```
 
-```php
-  <?php
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_PORT => "8080",
-      CURLOPT_URL => "https://{ApiUrl}/v1/auth/login-client?password=901482&username=fxtWebSite",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => "POST",
-      CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "content-type: application/json",
-      ),
-    ));
-
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-
-    curl_close($curl);
-
-    if ($err) {
-      echo "cURL Error #:" . $err;
-    } else {
-      echo $response;
-    }
-
-```
 > Success Response:
 
 ```text
@@ -108,13 +70,6 @@ Code | Name | Message
 
 ## LogoutClient
 
-```http
-  GET /{ApiUri}/v1/auth/logout-client HTTP/1.1
-  Host: {domainApi}
-  x-token: a0294e07-ea36-4cc6-9295-f866c9e40851
-  Cache-Control: no-cache
-```
-
 ```shell
   curl -X GET 
   -H "Content-Type: application/json" 
@@ -122,39 +77,6 @@ Code | Name | Message
   "https://{ApiURL}/v1/auth/logout-client"
 ```
 
-```php
-  <?php
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_PORT => "8080",
-      CURLOPT_URL => "https://{ApiUrl}/v1/auth/logout-client",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => "GET",
-      CURLOPT_HTTPHEADER => array(
-        "cache-control: no-cache",
-        "content-type: application/json",
-        "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
-      ),
-    ));
-
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-
-    curl_close($curl);
-
-    if ($err) {
-      echo "cURL Error #:" . $err;
-    } else {
-      echo $response;
-    }
-
-```
 > Success Response:
 
 ```text

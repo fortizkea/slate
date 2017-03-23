@@ -2,15 +2,13 @@
 title: API Reference
 
 language_tabs:
-  - http
-  - shell
-  - php
+  - shell: cURL
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://kea.mx'>Documentation Powered by KEA</a>
 
 includes:
+  - endpoint
   - authentication
   - workflow
   - taxpayer
@@ -31,18 +29,24 @@ En MonetaCore, proporciona una biblioteca de funcionalidades expuestas al client
 * Permite la creación de CFDIs. 
 * Permite la creación de contadores, así como la gestión de los mismos.
 
-MonetaCore está desarrollada bajo la arquitectura REST y se utilizan los verbos del protocolo HTTP (GET, POST, PUT y DELETE) para el consumo de los servicios, todos los servicios responden en formato JSON.
+MonetaCore está desarrollada bajo la arquitectura REST y utiliza los verbos del protocolo HTTP (GET, POST, PUT y DELETE) para el consumo de los servicios, todos los servicios responden en formato JSON.
 
-En la documentación expuesta a continuación se describen cada una de las funcioanalidades de la bibliteca.
+En la documentación expuesta a continuación se describen cada una de las funcionalidades de la biblioteca.
 
-# Cerberus
+## Access Control
 
-Capa de abstración responsable de la autorización de ejecución de servicios, así como el logeo de los autenticación de los clientes y usuarios en la plataforma. Todos los servicios expuestos requieren que en las cabeceras del protocolo HTTP anexar el token de acuerdo al tipo de servicio; a continuación se describe brevemente cada uno de ellos:  
+Capa de abstracción responsable de la autorización de ejecución de servicios, así como la autenticación de los clientes y usuarios en la plataforma. 
+
+En MonetaCore REST API existen tres clasificaciones de servicios:
+
+* **ConnectionService**: Aquellos servicios que requieren un token de tipo Connection, donde sus caracteristica principal es exponer información publica; por ejemplo Catálogos.
+
+Todos los servicios expuestos requieren que en las cabeceras del protocolo HTTP se anexe el `x-token`; a continuación se describe brevemente cada uno de ellos:  
 
 Tipo de Token | HTTP Header | Descripción
 --------- | --------- | -----------
-Connection | x-token | Token asignado a un cliente con credenciales válidas que desea consumir servicios expuestos disponibles para todos, ejemplo Catálagos.
-Session | x-token | Token asignado a un usuario con credenciales válidas, que le permitirán ejecutar servicios que por la delicadeza de la información es necesario conocer al resposable de la ejecución, ejemplo: actualización de la información de perfil.
-Transaction | x-token | Token creado por un usuario con Session válida para la ejecución de servicios que requieren iniciar una transacción para el flujo de un proceso, por ejemplo pagar un servicio.
+Connection | x-token | Token asignado a un cliente con credenciales válidas que desea consumir servicios expuestos disponibles para todos, ejemplo Catálogos.
+Session | x-token | Token asignado a un usuario con credenciales válidas, que le permitirán ejecutar servicios que por la delicadeza de la información es necesario conocer al responsable de la ejecución, ejemplo: actualización de la información de perfil.
+Transaction | x-token | Token creado por un usuario con Sesión válida para la ejecución de servicios que requieren iniciar una transacción para el flujo de un proceso, por ejemplo pagar un servicio.
 
 
