@@ -13,6 +13,8 @@ includes:
   - authentication
   - workflow
   - taxpayer
+  - request
+  - response
   - errors
 
 search: true
@@ -34,4 +36,6 @@ MonetaCore está desarrollada bajo la arquitectura REST y utiliza los verbos del
 
 En la documentación expuesta a continuación se describen cada una de las funcionalidades de la biblioteca.
 
+We have language bindings in cURL (Shell)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
+This API documentation page was created with Slate.

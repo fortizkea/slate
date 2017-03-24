@@ -1,6 +1,6 @@
 # Authentication
 
-## LoginClient
+## Login Client ##
 
 ```shell
   curl -X POST 
@@ -49,26 +49,17 @@ Status: {exception.code}
 
 This web service login a client
 
-### HTTP Request
+### Request
 
 `POST /v1/auth/login-client`
 
-### Query Parameters
+Send in the body params the [`LoginClientRQ`](#loginclientrq) object.
 
-Parameters | Required | Type  | Description 
---------- | ------- | ------- | -------
-username | true | String | client's username
-password | true | String | client's password
+### Response
 
-### Exceptions
+The service response the [`Response`](#responseobj) object.
 
-Code | Name | Message 
---------- | ------- | -------
-0000 | InvalidClientCredentialsException |  The client credentials are invalid.
-0000 | MaxClientConnectionException | Too many client connections..
-0000 | InvalidClientConnectionException | The client information is invalid.
-
-## LogoutClient
+## Logout Client ##
 
 ```shell
   curl -X GET 
@@ -118,18 +109,36 @@ Status: {exception.code}
 
 This web service logout a client
 
-### HTTP Request
+### Service Type `ConnectionService`
+Read the [`ConnectionService`](#connectionservice) requierements.
+
+### Request
 
 `GET /v1/auth/logout-client`
 
-### Header Parameters
+### Response
 
-Parameters | Required | Type  | Description 
---------- | ------- | ------- | -------
-x-token | true | String | client's token
+The service response the [`Response`](#responseobj) object.
 
-### Exceptions
 
-Code | Name | Message 
---------- | ------- | -------
-0000 | InvalidClientConnectionException |  The client information is invalid.
+## Login Taxpayer ##
+## Logout Taxpayer ##
+## Reset Password Taxpayer ##
+
+## Login Accountant ##
+## Logout Accountant ##
+## Reset Password Accountant ##
+
+## Login Manager ##
+## Logout Manager ##
+## Reset Password Manager ##
+
+## Validate Connection ##
+## Validate Session ##
+## Validate Transaction ##
+
+
+
+
+
+

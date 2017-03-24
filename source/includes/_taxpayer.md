@@ -1,5 +1,5 @@
 # Taxpayers
-## CreateTaxpayer
+## Create Taxpayer ##
 
 ```shell
 curl -X POST -H "x-token: 071ad636-a5c7-4fe1-aac6-60d449ccac6f" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
@@ -52,35 +52,146 @@ x-updated-at: Mon, 20 Mar 2017 19:53:21 GMT
 }
 ```
 
-This web service create a new `taxpayer`
+Create a new `taxpayer`
 
 ### Service Type `ConnectionService`
 Read the [`ConnectionService`](#connectionservice) requierements.
 
-### HTTP Request
+### Request
 
 `POST /v1/taxpayers`
 
+Send in the body params the [`TaxpayerRQ`](#taxpayerrq) object.
 
-### Body Parameters 
-`TaxpayerRQ Object`
+### Response
 
-Attribute | Required | Type  | Maxlength 
---------- | ------- | ------- | -------
-firstName | true | String | 150 chars
-lastName | true | String | 150 chars
-email | true | String | 250 chars
-cellphone | true | String | 10 chars
-taxpayerType | true | Int | 
+The service response the [`Response`](#response) object.
 
-### Exceptions
+## Read Taxpayer By Id ##
 
-Code | Name | Message 
---------- | ------- | -------
-0000 | EmailExistException |  The email {emailValue} already exist.
-0000 | InvalidEmailException | The {emailName} is invalid email address.
-0000 | IvalidCellphoneException | The {phoneNumber} is invalid only allow digits.
-0000 | InvalidParamException |  The param {paramName} is invalid.
-0000 | TaxpayerTypeNotExistsException |  The taxpayer type {taxpayerTypeValue} not exists.
-0000 | RequiredParamException | The param {paramName} is required.
-0000 | MaxlengthParamException | The maximun length of {paramName} is {maxlengthValue}.
+Get a `taxpayer` by Id.
+
+### Service Type `SessionService`
+Read the [`SessionService`](#sessionservice) requierements.
+
+### Request
+
+`GET /v1/taxpayers/{taxpayerId}`
+
+Query Params | Required | Type  | Description 
+:--------- | :---------: | :-------: | :-------
+taxpayerId | true | Int |  Taxpayer's Identifier
+
+### Response
+
+The service response the [`TaxpayerRS`](#taxpayerrs) object.
+
+
+## Update Taxpayer ##
+
+Update a `taxpayer` by Id.
+
+### Service Type `SessionService`
+Read the [`SessionService`](#sessionservice) requierements.
+
+### Request
+
+`PUT /v1/taxpayers/{taxpayerId}`
+
+Send in the body params the [`UpdateTaxpayerRQ`](#updatetaxpayerrq) object.
+
+### Response
+
+The service response the [`TaxpayerRS`](#taxpayerrs) object.
+
+## Create Tax Information ##
+
+Create a `taxpayer's tax id`.
+
+### Service Type `SessionService`
+Read the [`SessionService`](#sessionservice) requierements.
+
+### Request
+
+`POST /v1/taxpayers/{taxpayerId}/tax-informations`
+
+Send in the body params the [`TaxpayerTaxIdRQ`](#taxpayertaxidrq) object.
+
+### Response
+
+The service response the [`TaxpayerRS`](#taxpayerrs) object.
+
+## Create SAT Access Key ##
+
+Create a `taxpayer's key sat access`.
+
+### Service Type `SessionService`
+Read the [`SessionService`](#sessionservice) requierements.
+
+### Request
+
+`POST /v1/taxpayers/{taxpayerId}/sat-access-keys`
+
+Send in the body params the [`KeyAccessSatTaxpayerRQ`](#keyaccesssattaxpayerrq) object.
+
+### Response
+
+The service response the [`TaxpayerRS`](#taxpayerrs) object.
+
+## Delete Taxpayer ##
+
+Delete a `taxpayer` by Id.
+
+### Service Type `SessionService`
+Read the [`SessionService`](#sessionservice) requierements.
+
+### Request
+
+`DELETE /v1/taxpayers/{taxpayerId}`
+
+Query Params | Required | Type  | Description 
+:--------- | :---------: | :-------: | :-------
+taxpayerId | true | Int |  Taxpayer's Identifier
+
+### Response
+
+The service response the [`Response`](#response) object.
+
+## Create TaxSystem ##
+
+
+
+## Update TaxSystem ##
+
+
+
+
+## Create TaxAddress ##
+
+
+
+
+## Update TaxAddress ##
+
+
+
+## Create Notification ##
+
+
+
+## Read Notification By Id ##
+
+
+
+## Read Notifications ##
+
+
+
+## Update Notification Status ##
+
+
+
+## Update Notification Status ##
+
+
+
