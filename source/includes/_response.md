@@ -89,12 +89,12 @@ message | **string** <br> The error message.
 Property | Description 
 :--------- | :-------
 id | **numeric** <br> Identifier of taxpayer.
+userId | **string** <br> User universally unique identifier.
 firstName | **string** <br> First name of profile.
 lastName | **string** <br> Last name of profile.
 email | **string** <br> Email of profile.
 mobile | **string** <br> Mobile number of profile.
 birthdate | **date** <br> Birthdate of profile.
-userId | **string** <br> User universally unique identifier.
 active | **boolean** <br> If the user is active the value is true anotherwise is false.
 avatar | **string** <br> Url of image profile.
 curp | **string** <br> Unique population registry code of profile.

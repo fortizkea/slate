@@ -26,4 +26,14 @@ Id | Name | Description
 
 Id | Name | Description
 :--------- | :--------- | :-----------
-1 | ... | ...
+1 | Asalariados | Asalariados
+
+
+
+
+## Gender Type
+
+Id | Name | Description
+:--------- | :--------- | :-----------
+1 | Male | Gender Male
+2 | Female | Gender Female
