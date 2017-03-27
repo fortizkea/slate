@@ -11,20 +11,20 @@ includes:
   - endpoint
   - acl
   - authentication
-  - workflow
   - taxpayer
-  - request
+  - catalogs
   - response
   - errors
+  - workflow
 
 search: true
 ---
 
 # Introduction
 
-Bienvenido al API de MonetaCore, plataforma desarrollada para la gestión de las obligaciones fiscales de los contribuyentes ante el SAT.
+Bienvenido al API de Moneta, plataforma desarrollada para la gestión de las obligaciones fiscales de los contribuyentes ante el SAT.
 
-En MonetaCore, proporciona una biblioteca de funcionalidades expuestas al cliente que:
+En Moneta, proporciona una biblioteca de funcionalidades expuestas al cliente que:
 
 * Permite la creación de contribuyentes de tipo Persona Física, así como la gestión de los mismos.
 * Permite obtener la lista de precios de cada uno de los servicios que se ofrecen.
@@ -32,7 +32,7 @@ En MonetaCore, proporciona una biblioteca de funcionalidades expuestas al client
 * Permite la creación de CFDIs. 
 * Permite la creación de contadores, así como la gestión de los mismos.
 
-MonetaCore está desarrollada bajo la arquitectura REST y utiliza los verbos del protocolo HTTP (GET, POST, PUT y DELETE) para el consumo de los servicios, todos los servicios responden en formato JSON.
+Moneta está desarrollada bajo la arquitectura REST y utiliza los verbos del protocolo HTTP (GET, POST, PUT y DELETE) para el consumo de los servicios, todos los servicios responden en formato JSON.
 
 En la documentación expuesta a continuación se describen cada una de las funcionalidades de la biblioteca.
 

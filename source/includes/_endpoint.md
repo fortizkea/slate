@@ -15,13 +15,16 @@
 /v1/auth/logout/manager
 
 # Authentication Reset Password
-/v1/auth/reset-password/taxpayer
-/v1/auth/reset-password/accountant
-/v1/auth/reset-password/manager
+/v1/auth/reset-password
 
 # Transaction Token
 /v1/auth/begin-transaction
 /v1/auth/end-transaction
+
+# Validate Token
+/v1/auth/validate/connection
+/v1/auth/validate/session
+/v1/auth/validate/transaction
 
 # Taxpayers
 /v1/taxpayers
@@ -47,7 +50,7 @@
 
 ```
 
-The MonetaCore REST API has a test environment and a production environment.
+The Moneta REST API has a test environment and a production environment.
 
 ### **Development Enviroment:** 
 `https://dev.moneta.kea.mx`

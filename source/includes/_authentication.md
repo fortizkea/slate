@@ -1,5 +1,9 @@
 # Authentication
 
+
+
+
+
 ## Login Client ##
 
 ```shell
@@ -51,13 +55,20 @@ This web service login a client
 
 ### Request
 
-`POST /v1/auth/login-client`
+`POST /v1/auth/login/client`
 
-Send in the body params the [`LoginClientRQ`](#loginclientrq) object.
+Property | Description
+:--------- | :-----------
+username | **string** (required, length=150) <br> Nickname of client.
+password | **string** (required, length=150) <br> Passpord of client.
 
 ### Response
 
-The service response the [`Response`](#responseobj) object.
+Returns a [`ConnectionRS`](#connectionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
 
 ## Logout Client ##
 
@@ -107,36 +118,233 @@ Status: {exception.code}
 }
 ```
 
-This web service logout a client
+This web service logout a client.
 
-### Service Type `ConnectionService`
-Read the [`ConnectionService`](#connectionservice) requierements.
+### Service Type [`Connection`](#connection-service)
 
 ### Request
 
-`GET /v1/auth/logout-client`
+`GET /v1/auth/logout/client`
 
 ### Response
 
-The service response the [`Response`](#responseobj) object.
+Returns a [`ConnectionRS`](#connectionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
 
 
 ## Login Taxpayer ##
+This web service login a taxpayer user.
+
+### Service Type [`Connection`](#connection-service)
+
+### Request
+
+`POST /v1/auth/login/taxpayer`
+
+Property | Description
+:--------- | :-----------
+username | **string** (required, length=150) <br> Nickname of user.
+password | **string** (required, length=1500) <br> If the authentication type is **Moneta** send the **Passpword** otherwise send the access **token**.
+[authenticationType](#authentication-type) | **numeric** (required) <br> Authentication type of user account.
+
+### Response
+
+Returns a [`SessionRS`](#sessionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
 ## Logout Taxpayer ##
-## Reset Password Taxpayer ##
+This web service logout a Taxpayer user.
+
+### Service Type [`Session`](#session-service)
+
+### Request
+
+`GET /v1/auth/logout/taxpayer`
+
+### Response
+
+Returns a [`SessionRS`](#sessionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
+## Request a reset password ##
+
+Request a reset password of user.
+
+### Service Type [`Connection`](#connection-service)
+
+### Request
+
+`POST /v1/auth/reset-password`
+
+Property | Description
+:--------- | :-----------
+username | **string** (required, length=150) <br> Nickname of user.
+
+### Response
+
+Returns a [`ResetPasswordRS`](#resetpasswordrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
+## Validate a reset password ##
+
+Validate a token of reset password user.
+
+### Service Type [`Connection`](#connection-service)
+
+### Request
+
+`GET /v1/auth/reset-password?token={token}`
+
+### Response
+
+Returns a [`TransactionResetPasswordRS`](#transactionresetpasswordrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
+## Reset password ##
+
+Reset password of user.
+
+### Service Type [`Connection`](#connection-service)
+
+### Request
+
+`PUT /v1/auth/reset-password`
+
+Property | Description
+:--------- | :-----------
+transactionToken | **string** (required, length=36) <br> Transaction Token of reset password.
+oldPassword | **string** (required, length=150) <br> Old pasword of user.
+newPassword | **string** (required, length=150) <br> New password of user.
+
+
+### Response
+
+Returns a [`ResetPasswordRS`](#resetpasswordrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
 
 ## Login Accountant ##
+
+
+
+
+
 ## Logout Accountant ##
-## Reset Password Accountant ##
+
+
+
+
 
 ## Login Manager ##
+
+
+
+
+
 ## Logout Manager ##
-## Reset Password Manager ##
+
+
+
+
 
 ## Validate Connection ##
+
+This web service validate a connection token.
+
+### Service Type [`Connection`](#connection-service)
+
+### Request
+
+`GET /v1/auth/validate/connection`
+
+### Response
+
+Returns a [`ConnectionRS`](#connectionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
 ## Validate Session ##
+
+This web service validate a session token.
+
+### Service Type [`Session`](#session-service)
+
+### Request
+
+`GET /v1/auth/validate/session`
+
+### Response
+
+Returns a [`SessionRS`](#sessionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
 ## Validate Transaction ##
 
+This web service validate a transaction token.
+
+### Service Type [`Transaction`](#transaction-service)
+
+### Request
+
+`GET /v1/auth/validate/transaction`
+
+### Response
+
+Returns a [`TransactionRS`](#transactionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
+## Begin Transaction ##
+
+This web service begin a transaction token.
+
+### Service Type [`Session`](#session-service)
+
+### Request
+
+`GET /v1/auth/begin-transaction`
+
+### Response
+
+Returns a [`TransactionRS`](#transactionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
+
+## End Transaction ##
+
+This web service end a transaction token.
+
+### Service Type [`Transaction`](#transaction-service)
+
+### Request
+
+`GET /v1/auth/end-transaction`
+
+### Response
+
+Returns a [`TransactionRS`](#transactionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
 
 
 
