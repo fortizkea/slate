@@ -9,41 +9,30 @@
 ```shell
   curl -X POST 
   -H "Content-Type: application/json" 
-  "https://{ApiURL}/v1/auth/login-client?password=901482&username=fxtWebSite"
+  -d '{
+    "password" : "901482",
+    "username" : "fxtWebSite"
+  }'
+  "https://dev.moneta.kea.mx/v1/auth/login/client"
 ```
 
 > Success Response:
 
-```text
-# Status
-Status: 200
-
-# Header Response
-x-created-at: Mon, 20 Mar 2017 19:53:21 GMT
-x-token: 4f0f657f-0f74-4756-b86e-32facf8a35b5
-x-updated-at: Mon, 20 Mar 2017 19:53:21 GMT
-```
-
 ```json
-# Body Response
+# Connection Response
 {
-  "success": true
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400"
 }
 ```
 
-> Exception Response:
-
-```text
-# Status
-Status: {exception.code}
-
-# Header Response
-```
+> Error Response:
 
 ```json
 # Body Response
 {
-  "success": false,
   "error": {
     "code": 1,
     "message": "The client credentials are invalid."
@@ -73,46 +62,31 @@ Returns a [`ConnectionRS`](#connectionrs) when all the data were sent correctly,
 ## Logout Client ##
 
 ```shell
-  curl -X GET 
+  curl -X DELETE 
   -H "Content-Type: application/json" 
   -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
-  "https://{ApiURL}/v1/auth/logout-client"
+  "https://dev.moneta.kea.mx/v1/auth/logout/client"
 ```
 
 > Success Response:
 
-```text
-# Status
-Status: 200
-
-# Header Response
-x-created-at: Mon, 20 Mar 2017 19:53:21 GMT
-x-token: 4f0f657f-0f74-4756-b86e-32facf8a35b5
-x-updated-at: Mon, 20 Mar 2017 19:53:21 GMT
-```
-
 ```json
-# Body Response
+# Connection Response
 {
-  "success": true
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400"
 }
 ```
 
 > Exception Response:
 
-```text
-# Status
-Status: {exception.code}
-
-# Header Response
-```
-
 ```json
 # Body Response
 {
-  "success": false,
   "error": {
-    "code": 3,
+    "code": 5XXX,
     "message": "The client information is invalid."
   }
 }
@@ -124,7 +98,7 @@ This web service logout a client.
 
 ### Request
 
-`GET /v1/auth/logout/client`
+`DELETE /v1/auth/logout/client`
 
 ### Response
 
@@ -135,6 +109,44 @@ Returns a [`ConnectionRS`](#connectionrs) when all the data were sent correctly,
 
 
 ## Login Taxpayer ##
+
+```shell
+  curl -X POST 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  -d '{
+    "username" : "taxpayer@kea.mx",
+    "password" : "taxpayer_password",
+    "authenticationType" : "1",
+  }'
+  "https://dev.moneta.kea.mx/v1/auth/login/taxpayer"
+```
+
+> Success Response:
+
+```json
+# Session Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId": "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Error Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client credentials are invalid."
+  }
+}
+```
+
 This web service login a taxpayer user.
 
 ### Service Type [`Connection`](#connection-service)
@@ -154,14 +166,50 @@ password | **string** (required, length=1500) <br> If the authentication type is
 Returns a [`SessionRS`](#sessionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
 
 
+
+
+
 ## Logout Taxpayer ##
+
+```shell
+  curl -X DELETE 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  "https://dev.moneta.kea.mx/v1/auth/logout/taxpayer"
+```
+
+> Success Response:
+
+```json
+# Session Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId": "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Exception Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client information is invalid."
+  }
+}
+```
+
 This web service logout a Taxpayer user.
 
 ### Service Type [`Session`](#session-service)
 
 ### Request
 
-`GET /v1/auth/logout/taxpayer`
+`DELETE /v1/auth/logout/taxpayer`
 
 ### Response
 
@@ -172,6 +220,41 @@ Returns a [`SessionRS`](#sessionrs) when all the data were sent correctly, or re
 
 
 ## Request a reset password ##
+
+```shell
+  curl -X POST 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  -d '{
+    "username" : "taxpayer@kea.mx"
+  }'
+  "https://dev.moneta.kea.mx/v1/auth/reset-password"
+```
+
+> Success Response:
+
+```json
+# Session Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId": "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Error Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client credentials are invalid."
+  }
+}
+```
 
 Request a reset password of user.
 
@@ -195,6 +278,38 @@ Returns a [`ResetPasswordRS`](#resetpasswordrs) when all the data were sent corr
 
 ## Validate a reset password ##
 
+```shell
+  curl -X GET 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  "https://dev.moneta.kea.mx/v1/auth/reset-password?token=a0294e07-ea36-4cc6-9295-f866c9e40938"
+```
+
+> Success Response:
+
+```json
+# Session Response
+{
+  "transactionToken": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId": "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Error Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client credentials are invalid."
+  }
+}
+```
+
 Validate a token of reset password user.
 
 ### Service Type [`Connection`](#connection-service)
@@ -213,6 +328,42 @@ Returns a [`TransactionResetPasswordRS`](#transactionresetpasswordrs) when all t
 
 ## Reset password ##
 
+```shell
+  curl -X PUT 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  -d '{
+    "transactionToken" : "a0294e07-ea36-4cc6-9295-f866c9e40851",
+    "password" : "new_taxpayer_password"
+  }'
+  "https://dev.moneta.kea.mx/v1/auth/reset-password"
+```
+
+> Success Response:
+
+```json
+# Session Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId": "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Error Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client credentials are invalid."
+  }
+}
+```
+
 Reset password of user.
 
 ### Service Type [`Connection`](#connection-service)
@@ -224,8 +375,7 @@ Reset password of user.
 Property | Description
 :--------- | :-----------
 transactionToken | **string** (required, length=36) <br> Transaction Token of reset password.
-oldPassword | **string** (required, length=150) <br> Old pasword of user.
-newPassword | **string** (required, length=150) <br> New password of user.
+password | **string** (required, length=150) <br> The new password of user.
 
 
 ### Response
@@ -260,7 +410,139 @@ Returns a [`ResetPasswordRS`](#resetpasswordrs) when all the data were sent corr
 
 
 
+## Begin Transaction ##
+
+```shell
+  curl -X POST 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  "https://dev.moneta.kea.mx/v1/auth/begin-transaction"
+```
+
+> Success Response:
+
+```json
+# Transaction Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId": "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Error Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client credentials are invalid."
+  }
+}
+```
+
+This web service begin a transaction token.
+
+### Service Type [`Session`](#session-service)
+
+### Request
+
+`POST /v1/auth/begin-transaction`
+
+### Response
+
+Returns a [`TransactionRS`](#transactionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
+
+## End Transaction ##
+
+```shell
+  curl -X DELETE 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  "https://dev.moneta.kea.mx/v1/auth/end-transaction"
+```
+
+> Success Response:
+
+```json
+# Transaction Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId": "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Error Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client credentials are invalid."
+  }
+}
+```
+
+This web service end a transaction token.
+
+### Service Type [`Transaction`](#transaction-service)
+
+### Request
+
+`DELETE /v1/auth/end-transaction`
+
+### Response
+
+Returns a [`TransactionRS`](#transactionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
+
+
+
+
+
 ## Validate Connection ##
+
+```shell
+  curl -X GET 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  "https://dev.moneta.kea.mx/v1/auth/validate/connection"
+```
+
+> Success Response:
+
+```json
+# Connection Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400"
+}
+```
+
+> Exception Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client information is invalid."
+  }
+}
+```
 
 This web service validate a connection token.
 
@@ -277,7 +559,40 @@ Returns a [`ConnectionRS`](#connectionrs) when all the data were sent correctly,
 
 
 
+
 ## Validate Session ##
+
+```shell
+  curl -X GET 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  "https://dev.moneta.kea.mx/v1/auth/validate/session"
+```
+
+> Success Response:
+
+```json
+# Connection Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId" : "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Exception Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client information is invalid."
+  }
+}
+```
 
 This web service validate a session token.
 
@@ -297,6 +612,38 @@ Returns a [`SessionRS`](#sessionrs) when all the data were sent correctly, or re
 
 ## Validate Transaction ##
 
+```shell
+  curl -X GET 
+  -H "Content-Type: application/json" 
+  -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
+  "https://dev.moneta.kea.mx/v1/auth/validate/transaction"
+```
+
+> Success Response:
+
+```json
+# Connection Response
+{
+  "token": "4f0f657f-0f74-4756-b86e-32facf8a35b5",
+  "createdAt" : "2017-04-01 20:21:11",
+  "updatedAt" : "2017-04-01 20:21:11",
+  "expiresIn" : "86400",
+  "userId" : "4f0f657f-0f74-4756-b86e-32facf8a35b5"
+}
+```
+
+> Exception Response:
+
+```json
+# Body Response
+{
+  "error": {
+    "code": 5XXX,
+    "message": "The client information is invalid."
+  }
+}
+```
+
 This web service validate a transaction token.
 
 ### Service Type [`Transaction`](#transaction-service)
@@ -304,43 +651,6 @@ This web service validate a transaction token.
 ### Request
 
 `GET /v1/auth/validate/transaction`
-
-### Response
-
-Returns a [`TransactionRS`](#transactionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
-
-
-
-
-
-## Begin Transaction ##
-
-This web service begin a transaction token.
-
-### Service Type [`Session`](#session-service)
-
-### Request
-
-`GET /v1/auth/begin-transaction`
-
-### Response
-
-Returns a [`TransactionRS`](#transactionrs) when all the data were sent correctly, or returns an [`error response`](#errors) if a problem happened.
-
-
-
-
-
-
-## End Transaction ##
-
-This web service end a transaction token.
-
-### Service Type [`Transaction`](#transaction-service)
-
-### Request
-
-`GET /v1/auth/end-transaction`
 
 ### Response
 

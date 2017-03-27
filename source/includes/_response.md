@@ -8,12 +8,12 @@ Information for objects shared in response.
 
 ## ConnectionRS ##
 
-Attribute | Type  | Description
-:--------- | :-------: | :-------
-token | String | Token's Universally unique identifier.
-createdAt | Datetime | The date and time of token's create.
-updatedAt | Datetime | The date and time of token's update.
-expiresIn | Numeric | The lifetime of the connection token in seconds.
+Attribute | Description
+:--------- | :-------
+token | **string** <br> Token's Universally unique identifier.
+createdAt | **datetime** <br> The date and time of token's create.
+updatedAt | **datetime** <br> The date and time of token's update.
+expiresIn | **numeric** <br> The lifetime of the connection token in seconds.
 
 
 
@@ -21,13 +21,13 @@ expiresIn | Numeric | The lifetime of the connection token in seconds.
 
 ## SessionRS
 
-Attribute | Type  | Description
-:--------- | :-------: | :-------
-token | String | Token's Universally unique identifier.
-createdAt | Datetime | The date and time of token's create.
-updatedAt | Datetime | The date and time of token's update.
-expiresIn | Numeric | The lifetime of the session token in seconds.
-userId | String | The user's universally unique identifier.
+Attribute | Description
+:--------- | :-------
+token |  **string** <br> Token's Universally unique identifier.
+createdAt | **datetime** <br> The date and time of token's create.
+updatedAt | **datetime** <br> The date and time of token's update.
+expiresIn | **numeric** <br> The lifetime of the session token in seconds.
+userId | **string** <br> The user's universally unique identifier.
 
 
 
@@ -35,12 +35,13 @@ userId | String | The user's universally unique identifier.
 
 ## TransactionRS ##
 
-Attribute | Type  | Description
-:--------- | :-------: | :-------
-token | String | Token's Universally unique identifier.
-createdAt | Datetime | The date and time of token's create.
-updatedAt | Datetime | The date and time of token's update.
-expiresIn | Numeric | The lifetime of the transaction token in seconds.
+Attribute | Description
+:--------- | :-------
+token | **string** <br> Token's Universally unique identifier.
+createdAt | **datetime** <br> The date and time of token's create.
+updatedAt | **datetime** <br> The date and time of token's update.
+expiresIn | **numeric** <br> The lifetime of the transaction token in seconds.
+userId | **string** <br> The user's universally unique identifier.
 
 
 
@@ -48,12 +49,12 @@ expiresIn | Numeric | The lifetime of the transaction token in seconds.
 
 ## ResetPasswordRS ##
 
-Attribute | Type  | Description
-:--------- | :-------: | :-------
-token | String | Token's Universally unique identifier.
-createdAt | Datetime | The date and time of token's create.
-updatedAt | Datetime | The date and time of token's update.
-userId | String | The user's universally unique identifier.
+Attribute | Description
+:--------- | :-------
+token | **string** <br> Token's Universally unique identifier.
+createdAt | **datetime** <br> The date and time of token's create.
+updatedAt | **datetime** <br> The date and time of token's update.
+userId | **string** <br> The user's universally unique identifier.
 
 
 
@@ -61,12 +62,12 @@ userId | String | The user's universally unique identifier.
 
 ## TransactionResetPasswordRS ##
 
-Attribute | Type  | Description
-:--------- | :-------: | :-------
-transaction | String | Transaction's Universally unique identifier.
-createdAt | Datetime | The date and time of token's create.
-updatedAt | Datetime | The date and time of token's update.
-userId | String | The user's universally unique identifier.
+Attribute | Description
+:--------- | :-------
+transactionToken | **string** <br> Transaction's Universally unique identifier.
+createdAt | **datetime** <br> The date and time of token's create.
+updatedAt | **datetime** <br> The date and time of token's update.
+userId | **string** <br> The user's universally unique identifier.
 
 
 
@@ -74,10 +75,10 @@ userId | String | The user's universally unique identifier.
 
 ## ErrorRS
 
-Attribute | Type  | Description
-:--------- | :-------: | :-------: | :-------:
-code | Numeric | ...
-message | String | ...
+Attribute | Description
+:--------- | :-------
+code | **numeric** <br> The error code.
+message | **string** <br> The error message.
 
 
 
