@@ -1,16 +1,16 @@
 # Access Control
 
-Capa de abstracción responsable de la autorización de ejecución de servicios que pueden ejecutar los clientes o usuarios con credenciales válidas.
+The access control layer, authorize that clients and users execute services.
 
-Se considera **Cliente** aquellas plataformas que desean consumir los servicios; por ejemplo el WebSite, la Aplicación Movil (Android ó iOS).
+The **Client** is an user with valid credential to execute services; for example: website and Apps mobile (Android or iOS).
 
-Se considera **Usuario** a la personas con un correo válido y una contraseña que utiliza los servicios expuestos por un sitio web ó aplicación movil; por ejemplo los contribuyentes, contadores y administradores de FIXAT. 
+The **User** is a person with valid email and password authorize to execute services on website and Moneta REST API; for example Taxpayers, Accountants and Moneta Managers.
 
 ## Connection Service ##
-Servicios donde su caracteristica principal es exponer información publica; por ejemplo Catálogos de Productos, Estados, entre otros.
+The response of connection services are the public information, like countries catalogs.
 
-### How to get ConnecctionToken
-Para obtener un token de tipo **`ConnectionToken`** se debe realizar la autenticación del cliente a través del siguiente servicio [`Login Client`](#login-client).
+### How to get Connecction Token
+If your has a Client's valid credentials, execute [`Login Client`](#login-client) service.
 
 ### Header Request Service
 
@@ -20,46 +20,42 @@ Para obtener un token de tipo **`ConnectionToken`** se debe realizar la autentic
   -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
   "https://dev.moneta.kea.mx/v1/auth/logout-client"
 ```
+When you want to execute the **`connection`** service type, is required add the next HTTP headers:
 
-Cuando se consumen un servicio de tipo **`ConnectionService`**, es requerido enviar en la cabecera Http lo siguiente:
-
-HTTP Header | Required | Type | Description
-:--------- | :---------: | :---------: | :-----------
-x-token | true | String | Universally unique identifier.
+HTTP Header | Description
+:--------- | :-----------
+x-token | **string** (required, length=36) <br> Universally unique identifier.
 
 ### Header Response Service
 
 ```text
-# Status
-Status: {exception.code}
-
 # Header Response
-x-created-at: Mon, 20 Mar 2017 19:53:21 GMT
 x-token: 4f0f657f-0f74-4756-b86e-32facf8a35b5
-x-updated-at: Mon, 20 Mar 2017 19:53:21 GMT
+x-created-at: 2017-04-02 21:32:33
+x-updated-at: 2017-04-02 21:32:33
+x-time-to-live: 86400
 ```
+The services response the next HTTP Headers:
 
-En el momento que se recibe la respuesta del servicio; en la cabecera http se recibe lo siguiente:
-
-HTTP Header | Type | Description
-:--------- | :---------: | :-----------
-x-token | String | Universally unique identifier.
-x-created-at | Datetime | Datetime of creation token.
-x-updated-at | Datetime | Datetime of update token.
-x-time-to-live | Numeric | Time to live of token (seconds format).
+HTTP Header | Description
+:--------- | :-----------
+x-token | **string** <br> Universally unique identifier.
+x-created-at | **datetime** <br> Datetime of creation token.
+x-updated-at | **datetime** <br> Datetime of update token.
+x-time-to-live | **numeric** <br> Time to live of token (seconds format).
 
 ## Session Service ##
 
-Servicios donde su caracteristica principal es exponer información privada; por ejemplo Consultar la información del contribuyente, del contador, entre otros.
+The response of connection services are the private information, like taxpayer data or accountant profile.
 
-### How to get SessionToken
-Para obtener un token de tipo **`SessionToken`** se debe realizar la autenticación del usuario a través de los siguientes servicios:
+### How to get Session Token
+If you want begin the session on the platform is required a user's valid credentials.
 
-* Si deseas crear la sesión de un contribuyente se debe realizar la autenticación a través del siguiente servicio [`Login Taxpayer`](#login-taxpayer).
+* If you has a taxpayer's credentials, execute the [`Login Taxpayer`](#login-taxpayer) service.
 
-* Si deseas crear la sesión de un contador se debe realizar la autenticación a través del siguiente servicio [`Login Accountant`](#login-accountant).
+* If you has a accountant's credentials, execute the [`Login Accountant`](#login-accountant) service.
 
-* Si deseas crear la sesión de un operador de FIXAT se debe realizar la autenticación a través del siguiente servicio [`Login Manager`](#login-manager).
+* If you has a moneta manager's credentials, execute the [`Login Manager`](#login-manager) service.
 
 ### Header Request Service
 
@@ -70,72 +66,74 @@ Para obtener un token de tipo **`SessionToken`** se debe realizar la autenticaci
   "https://dev.moneta.kea.mx/v1/auth/login-taxpayer"
 ```
 
-Cuando se consume un servicio de tipo **`SessionService`**, es requerido enviar en la cabecera Http lo siguiente:
+When you want to execute the **`session`** service type, is required add the next HTTP headers:
 
-HTTP Header | Required | Type | Description
-:--------- | :---------: | :---------: | :-----------
-x-token | true | String | Universally unique identifier.
+HTTP Header | Description
+:--------- | :-----------
+x-token | **string** (required, length=36) <br> Universally unique identifier.
 
 ### Header Response Service
 
 ```text
-# Status
-Status: {exception.code}
-
 # Header Response
-x-created-at: Mon, 20 Mar 2017 19:53:21 GMT
 x-token: 4f0f657f-0f74-4756-b86e-32facf8a35b5
-x-updated-at: Mon, 20 Mar 2017 19:53:21 GMT
+x-created-at: 2017-04-02 21:32:33
+x-updated-at: 2017-04-02 21:32:33
+x-time-to-live: 86400
 ```
 
-En el momento que se recibe la respuesta del servicio; en la cabecera http se recibe lo siguiente:
+The services response the next HTTP Headers:
 
-HTTP Header | Type | Description
-:--------- | :---------: | :-----------
-x-token | String | Universally unique identifier.
-x-created-at | Datetime | Datetime of creation token.
-x-updated-at | Datetime | Datetime of update token.
-x-time-to-live | Numeric | Time to live of token (seconds format).
+HTTP Header | Description
+:--------- | :-----------
+x-token | **string** <br> Universally unique identifier.
+x-created-at | **datetime** <br> Datetime of creation token.
+x-updated-at | **datetime** <br> Datetime of update token.
+x-time-to-live | **numeric** <br> Time to live of token (seconds format).
 
 ## Transaction Service ##
 
-Servicios donde su caracteristica principal es ejecutar un conjunto de procesos que se garantiza que su operación es satisfactoria; de recibir un error dicha transacción se cancela; por ejemplo pago de servicios, entre otros.
+Transaction service is the process of completing a task and/or user request either instantly or at runtime. It is the collection of different interrelated tasks and processes that must work in sync to finish an overall business process transaction. for example when your payment a Moneta Product.
 
-### How to get TransactionToken
-Para obtener un token de tipo **`TransactionToken`** se debe crear a través del siguiente servicio [`Begin Transaction`](#begin-transaction).
+### How to get Transaction Token
+When you need to execute transaction services is requiered follow the next steps:
+
+1 If your has a user's session then execute [`Begin Transaction`](#begin-transaction) service.
+
+2 Execute transaction service type.
+
+3 When you want finished the transaction then execute [`End Transaction`](#end-transaction) service.
 
 ### Header Request Service
 
 ```shell
-  curl -X GET 
+  curl -X POST 
   -H "Content-Type: application/json" 
   -H "x-token: a0294e07-ea36-4cc6-9295-f866c9e40851"
-  "https://dev.moneta.kea.mx/v1/auth/logout-client"
+  "https://dev.moneta.kea.mx/v1/auth/begin-transaction"
 ```
 
-Cuando se requiere consumir los servicios de tipo **`TransactionService`**, es requerido enviar en la cabecera Http lo siguiente:
+When you want to execute the **`transaction`** service type, is required add the next HTTP headers:
 
-HTTP Header | Required | Type | Description
-:--------- | :---------: | :---------: | :-----------
-x-token | true | String | Universally unique identifier.
+HTTP Header | Description
+:--------- | :-----------
+x-token | **string** (required, length=36) <br> Universally unique identifier.
 
 ### Header Response Service
 
 ```text
-# Status
-Status: {exception.code}
-
 # Header Response
-x-created-at: Mon, 20 Mar 2017 19:53:21 GMT
 x-token: 4f0f657f-0f74-4756-b86e-32facf8a35b5
-x-updated-at: Mon, 20 Mar 2017 19:53:21 GMT
+x-created-at: 2017-04-02 21:32:33
+x-updated-at: 2017-04-02 21:32:33
+x-time-to-live: 86400
 ```
 
-En el momento que se recibe la respuesta del servicio; en la cabecera http se recibe lo siguiente:
+The services response the next HTTP Headers:
 
-HTTP Header | Type | Description
-:--------- | :---------: | :-----------
-x-token | String | Universally unique identifier.
-x-created-at | Datetime | Datetime of creation token.
-x-updated-at | Datetime | Datetime of update token.
-x-time-to-live | Numeric | Time to live of token (seconds format).
+HTTP Header | Description
+:--------- | :-----------
+x-token | **string** <br> Universally unique identifier.
+x-created-at | **datetime** <br> Datetime of creation token.
+x-updated-at | **datetime** <br> Datetime of update token.
+x-time-to-live | **numeric** <br> Time to live of token (seconds format).
