@@ -1,6 +1,6 @@
 #API Endpoint
 
-```sell
+```shell
 
 # Authentication Login
 /v1/auth/login/client

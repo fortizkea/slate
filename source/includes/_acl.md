@@ -1,16 +1,21 @@
 # Access Control
 
-The access control layer, authorize that clients and users execute services.
+The access control layer authorizes which clients and users execute services.
 
-The **Client** is an user with valid credential to execute services; for example: website and Apps mobile (Android or iOS).
+The **Client** is an user with valid credentials to execute services; for example: website and Apps mobile (Android or iOS).
 
-The **User** is a person with valid email and password authorize to execute services on website and Moneta REST API; for example Taxpayers, Accountants and Moneta Managers.
+The **User** is a person with valid email and password authorized to execute services on website and Moneta REST API; for example Taxpayers, Accountants and Moneta Managers.
+
+
+
+
+
 
 ## Connection Service ##
 The response of connection services are the public information, like countries catalogs.
 
-### How to get Connecction Token
-If your has a Client's valid credentials, execute [`Login Client`](#login-client) service.
+### How to get Connection Token
+If your have a Client's valid credential, execute [`Login Client`](#login-client) service.
 
 ### Header Request Service
 
@@ -51,11 +56,11 @@ The response of connection services are the private information, like taxpayer d
 ### How to get Session Token
 If you want begin the session on the platform is required a user's valid credentials.
 
-* If you has a taxpayer's credentials, execute the [`Login Taxpayer`](#login-taxpayer) service.
+* If you have a taxpayer's valid credential, execute the [`Login Taxpayer`](#login-taxpayer) service.
 
-* If you has a accountant's credentials, execute the [`Login Accountant`](#login-accountant) service.
+* If you have a accountant's valid credential, execute the [`Login Accountant`](#login-accountant) service.
 
-* If you has a moneta manager's credentials, execute the [`Login Manager`](#login-manager) service.
+* If you have a moneta manager's valid credential, execute the [`Login Manager`](#login-manager) service.
 
 ### Header Request Service
 
@@ -98,7 +103,7 @@ Transaction service is the process of completing a task and/or user request eith
 ### How to get Transaction Token
 When you need to execute transaction services is requiered follow the next steps:
 
-1 If your has a user's session then execute [`Begin Transaction`](#begin-transaction) service.
+1 If you have a user's valid session then execute [`Begin Transaction`](#begin-transaction) service.
 
 2 Execute transaction service type.
 
